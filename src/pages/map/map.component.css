@@ -1,0 +1,97 @@
+.open>.dropdown-menu{
+  z-index: 2000;
+}
+
+.canvas-class{
+  position: absolute;
+  z-index: 999;
+  margin-left: -172px;
+  margin-top: 157px;
+  transform: rotate(90deg);
+}
+
+.title-canvas{
+  position: absolute;
+  z-index: 999;
+  margin-top: 371px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
+.top-value-class{
+  position: absolute;
+  z-index: 999;
+  margin-top: 82px;
+  font-weight: 600;
+  margin-left: 6px;
+  color: #1c92d2;
+}
+
+.last-value-class{
+  position: absolute;
+  z-index: 999;
+  margin-top: 350px;
+  font-weight: 600;
+  margin-left: 10px;
+  color: #d98583;
+}
+
+.nav li:hover .dropdown-menu{
+  display: block;
+  z-index: 2000;
+  background-color: #5ba361;
+}
+
+.navbar-default {
+  background-color: #5ba361;
+  border-color: #e7e7e7;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  color: white;
+  background-color: #5ba361;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.foo {
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgba(0, 0, 0, .2);
+  position: absolute;
+  z-index: 999;
+  margin-top: 395px;
+  margin-left: 8px;
+}
+
+.black {
+  background: #696969;
+}
+
+.no-data-divclass{
+  position: absolute;
+  z-index: 999;
+  margin-top: 392px;
+  margin-left: 30px;
+  font-weight: 600;
+}
+
+/* selection on the menu bar */
+.nav>li>a:focus{
+  text-decoration: none;
+  background-color: #5ba361;  /*here color on tab*/
+}
+
+.nav .special{
+  text-decoration: none;
+  background-color: #5ba361;  /*here color on tab*/
+}
+
+.glyphicon-arrow-down{
+  color: #f29492;
+}
+.glyphicon-arrow-up{
+  color: #1c92d2;
+}

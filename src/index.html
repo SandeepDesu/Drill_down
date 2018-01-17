@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NPS Map </title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+</head>
+<body>
+<app-root>Loading...</app-root>
+
+
+<div class="container-fluid" id="browser-container" style="display:none">
+  <div class="row">
+    <div class="col col-lg-12">
+      <div class="browser-message">
+        <p>Only Chrome browser is supported!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div class="footer">-->
+<!--<nav class='navbar navbar-default navbar-fixed-bottom'>-->
+<!--<div class='container-fluid'>-->
+<!--<p class='navbar-text' style="color:green">Monsanto Company</p>-->
+<!--</div>-->
+<!--</nav>-->
+<!--</div>-->
+</body>
+<script>
+  //var ua = navigator.userAgent;
+  //var msie = ua.indexOf("MSIE ");
+  var isChrome = ((navigator.userAgent.toLowerCase().indexOf('chrome') > -1)
+  && (navigator.vendor.toLowerCase().indexOf("google") > -1));
+  //if (msie > 0 || !!ua.match(/Trident.*rv\:11\./) || ua.indexOf('Edge/')> -1 )
+  if(!isChrome)
+  {
+    document.getElementById("header").style.display = "none";
+    document.getElementById("mainContent").style.display = "none";
+    document.getElementById("browser-container").style.display = "";
+  }
+  </html>
+
+
+
+
