@@ -19,7 +19,7 @@ const routes: Routes = [
     MapComponent
   ],
   imports: [
-    RouterModule.forRoot(routes,{useHash:true}),
+    RouterModule.forRoot(routes),
     BrowserModule,
     FormsModule,
     HttpModule
