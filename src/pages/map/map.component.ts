@@ -121,7 +121,7 @@ export class MapComponent implements OnInit {
 
   onEachFeature(feature, layer) {
     layer.bindPopup(`<div>
-          <h4 class="set-margincls">${feature.dsm_id}</h2>            
+          <h4 class="set-margincls">${feature.properties.name}</h2>            
           <table class="table table-hover">
             <thead>
               <tr>
@@ -136,6 +136,16 @@ export class MapComponent implements OnInit {
                 <td>${feature.geoValues[0].actual}</td>
                 <td>${feature.geoValues[0].ytdActual}</td>
               </tr>
+              <tr>
+                <td>${feature.geoValues[1].label}</td>
+                <td>${feature.geoValues[1].actual}</td>
+                <td>${feature.geoValues[1].ytdActual}</td>
+              </tr>
+              <tr>
+              <td>${feature.geoValues[2].label}</td>
+              <td>${feature.geoValues[2].actual}</td>
+              <td>${feature.geoValues[2].ytdActual}</td>
+            </tr>
             </tbody>
           </table>
         </div>
