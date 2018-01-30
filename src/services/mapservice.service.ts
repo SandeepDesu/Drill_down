@@ -15,6 +15,12 @@ export class MapService {
       .map((res:any) => res.json());
   }
 
+
+  getJsonFile(fileName){
+    return this.http.get('assets/' + fileName + '.json')
+      .map((res:any) => res.json());
+  }
+
   // getBrandData(params){
   //   return this.http.get('assets/us_org_' + params.usOrg + '_demo.json')
   //     .map((res:any) => res.json());
