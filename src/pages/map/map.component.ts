@@ -1,9 +1,9 @@
-import { MapService } from './../../services/mapservice.service';
-
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as L from 'leaflet';
 import _ from 'lodash';
+
+import { MapService } from './../../services/mapservice.service';
 
 @Component({
   selector: 'app-map',
@@ -72,26 +72,20 @@ export class MapComponent implements OnInit {
       id: 'mapbox.light',
       attribution: ''
     }).addTo(this.map);
-    if (this.country && this.country.toLowerCase() === 'us') {
-      this.getUsStateData();
+    if (this.country) {
+      this.heighlighCountry();
     } else if (!this.country) {
       this.getGeoCodesFromJsonFile();
     }
   }
 
-
-  getUsStateData() {
-    let sou = [];
-    this.mapService.getJsonFile("nps_new_17-18").subscribe((nps) => {
-      this.nps = nps;
-      this.mapService.getJsonFile("US_Counties_fips_codes").subscribe((geoCodes) => {
-        this.nps.periods.forEach((v) => {
-          let cou = _.filter(geoCodes.objects.counties.geometries, { id: v.country_code })[0];
-          
-        });
-        //let geojson = L.polygon(sou[0].arcs).addTo(this.map);
-        
-      });
+  heighlighCountry() {
+    this.world.features.forEach((selected) => {
+      if (this.country && selected.dsm_id === this.list[this.country.toUpperCase()]) {
+        let geojson = L.geoJSON(selected, {
+          style: this.countieStyle
+        }).addTo(this.map);
+      }
     });
   }
 
@@ -104,12 +98,11 @@ export class MapComponent implements OnInit {
             this.geoCodes.push(v.geoid);
           }
         });
-        this.heighLitingCountrys();
-
+        this.heighLitingGeoCountrys();
       }
     });
   }
-  heighLitingCountrys() {
+  heighLitingGeoCountrys() {
     let geo = [];
     this.world.features.forEach((selected) => {
       this.geoCodes.forEach((v) => {
@@ -133,7 +126,7 @@ export class MapComponent implements OnInit {
   countieStyle(feature) {
     return {
       weight: 0,
-      fillColor: feature.dsm_id === 'ARG' ? 'blue' : feature.dsm_id === 'BRA' ? 'green' : "yellow",
+      fillColor: feature.dsm_id === 'ARG' ? 'blue' : feature.dsm_id === 'BRA' ? 'green' : feature.dsm_id === 'USA' ? "yellow" : "blue",
       fillOpacity: 0.7
     };
   }
