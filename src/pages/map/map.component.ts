@@ -4,7 +4,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as L from 'leaflet';
 import _ from 'lodash';
-import { Services } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-map',
@@ -73,7 +72,27 @@ export class MapComponent implements OnInit {
       id: 'mapbox.light',
       attribution: ''
     }).addTo(this.map);
-    this.getGeoCodesFromJsonFile();
+    if (this.country && this.country.toLowerCase() === 'us') {
+      this.getUsStateData();
+    } else if (!this.country) {
+      this.getGeoCodesFromJsonFile();
+    }
+  }
+
+
+  getUsStateData() {
+    let sou = [];
+    this.mapService.getJsonFile("nps_new_17-18").subscribe((nps) => {
+      this.nps = nps;
+      this.mapService.getJsonFile("US_Counties_fips_codes").subscribe((geoCodes) => {
+        this.nps.periods.forEach((v) => {
+          let cou = _.filter(geoCodes.objects.counties.geometries, { id: v.country_code })[0];
+          
+        });
+        //let geojson = L.polygon(sou[0].arcs).addTo(this.map);
+        
+      });
+    });
   }
 
   getGeoCodesFromJsonFile() {
@@ -150,12 +169,12 @@ export class MapComponent implements OnInit {
           </table>
         </div>
       `);
-      layer.on("mouseover", function (e) {
-        layer.openPopup(e.latlng);
-      });
-      layer.on("mouseout", function () {
-        layer.closePopup();
-      });
+    layer.on("mouseover", function (e) {
+      layer.openPopup(e.latlng);
+    });
+    layer.on("mouseout", function () {
+      layer.closePopup();
+    });
   }
 }
 
